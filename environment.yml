@@ -1,0 +1,25 @@
+name: eigensafe
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy
+  - matplotlib
+  - pip
+  - glfw
+  - ffmpeg
+  - pytorch
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.8
+
+  - pip:
+      - gymnasium
+      - mujoco>=3.0
+      - opencv-python
+      - imageio
+      - imageio-ffmpeg
+      - moviepy
+      - tensorboard
+      - tqdm
