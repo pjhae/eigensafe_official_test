@@ -1,17 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# HalfCheetah run-low variant focused on safety
+# LunarLander safety baseline (matches argparse defaults)
 python3 train.py \
-  --exp_name "exp0305-halfcheetah-run-low-v5-lambda800" \
-  --env_name "Halfcheetah-run-low-v5" \
-  --seed 101 \
+  --exp_name "exp0101-eigen-lander" \
+  --env_name "LunarLander-safety" \
+  --seed 97 \
+  --policy "Gaussian" \
+  --automatic_entropy_tuning True \
+  --alpha 0.01 \
+  --gamma 0.99 \
+  --lr 0.0005 \
+  --tau 0.005 \
+  --target_update_interval 1 \
+  --batch_size 512 \
+  --replay_size 50000 \
+  --hidden_size 512 \
   --lambda_value 800 \
-  --epsilon 5e-4 \
-  --gamma_target 0.95 \
-  --episodes_per_epoch 5 \
-  --gradient_steps_per_epoch 32 \
-  --start_steps 5000 \
-  --eval_epoch_ratio 50 \
-  --save_epoch_ratio 200 \
-  --num_episodes 200000 "$@"
+  --epsilon 1e-3 \
+  --gamma_target 1.0 \
+  --episodes_per_epoch 10 \
+  --gradient_steps_per_epoch 64 \
+  --start_steps 1000 \
+  --eval_epoch_ratio 100 \
+  --save_epoch_ratio 500 \
+  --num_episodes 80000 "$@"

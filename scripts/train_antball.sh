@@ -3,9 +3,9 @@ set -euo pipefail
 
 # LunarLander safety baseline (matches argparse defaults)
 python3 train.py \
-  --exp_name "exp0301-eigen-lambda1200-lander-1" \
-  --env_name "LunarLander-safety" \
-  --seed 970 \
+  --exp_name "exp0101-eigen-ant" \
+  --env_name "Ant-ball-v5" \
+  --seed 97 \
   --policy "Gaussian" \
   --automatic_entropy_tuning True \
   --alpha 0.01 \
@@ -16,7 +16,7 @@ python3 train.py \
   --batch_size 512 \
   --replay_size 50000 \
   --hidden_size 512 \
-  --lambda_value 1200 \
+  --lambda_value 40 \
   --epsilon 1e-3 \
   --gamma_target 1.0 \
   --episodes_per_epoch 10 \

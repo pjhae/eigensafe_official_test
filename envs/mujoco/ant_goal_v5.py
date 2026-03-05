@@ -24,7 +24,7 @@ class AntGoalEnv(MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
-        xml_file="/home/jhpark-larr/EigenSafe/envs/mujoco/assets/antgoal.xml",
+        xml_file="/home/jhpark-larr/eigensafe_official_test/envs/mujoco/assets/antgoal.xml",
         frame_skip: int = 5,
         default_camera_config: dict = DEFAULT_CAMERA_CONFIG,
         forward_reward_weight: float = 1.0,
