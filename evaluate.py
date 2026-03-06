@@ -39,7 +39,7 @@ def psi_plot_image(history, width, height):
 env_name = "Ant-ball-v5"    # Halfcheetah-run-low-v5, Hopper-run-high-v5, Ant-ball-v5, LunarLander-safety
 
 exp_name = "exp0101-eigen-ant"
-num_episode = 1000
+num_episode = 10
 
 # Load arguments
 args = parser_args()
@@ -49,7 +49,7 @@ exp_num_directory = os.path.join("results", exp_name)
 create_directory(exp_num_directory)
 
 # Sub-directories
-log_dir   = os.path.join(exp_num_directory, "plots")
+log_dir   = os.path.join(exp_num_directory, "evals")
 
 create_directory(log_dir)
 frames_dir = os.path.join(log_dir, "frames")
@@ -91,12 +91,14 @@ avg_step = 0.
 
 psi_value = []
 first_unsafe_steps = []
-num_episodes = 2
 
 video_path = os.path.join(log_dir, f"{exp_name}_eigen.mp4")
 video_writer = imageio.get_writer(video_path, fps=100)
 
-for i in range(num_episodes): # Make sure that 'episodes' == 'num_intervals', so all cases can be evaluated.
+
+num_eval_episodes = 3
+
+for i in range(num_eval_episodes): # Make sure that 'episodes' == 'num_intervals', so all cases can be evaluated.
     
     episode_steps = 0
     episode_reward = 0
@@ -132,8 +134,8 @@ for i in range(num_episodes): # Make sure that 'episodes' == 'num_intervals', so
             psi_img = psi_plot_image(psi_history, frame.shape[1], frame.shape[0])
             concat_frame = np.concatenate([frame, psi_img], axis=1)
             video_writer.append_data(concat_frame)
-            frame_path = os.path.join(frames_dir, f"ep{i}_step{t:04d}.png")
-            imageio.imwrite(frame_path, frame)
+        #     frame_path = os.path.join(frames_dir, f"ep{i}_step{t:04d}.png")
+        #     imageio.imwrite(frame_path, frame)
         if done or trunc:
             break
         
@@ -145,8 +147,8 @@ for i in range(num_episodes): # Make sure that 'episodes' == 'num_intervals', so
     
     first_unsafe_steps.append(first_unsafe_step)
     
-avg_reward /= num_episodes
-avg_step /= num_episodes
+avg_reward /= num_eval_episodes
+avg_step /= num_eval_episodes
 avg_first_unsafe_step = sum(first_unsafe_steps) / len(first_unsafe_steps)
 
 
