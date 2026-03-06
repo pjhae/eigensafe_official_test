@@ -153,7 +153,7 @@ class AntGoalEnv(MujocoEnv, utils.EzPickle):
 
         # gymnasium API
         terminated = self.terminated
-        truncated = False  # time-limit truncation 쓰면 여기서 처리
+        truncated = False 
 
         # ===== safety: body height =====
         z_height = float(self._get_ball_obs()[2])
@@ -185,11 +185,10 @@ class AntGoalEnv(MujocoEnv, utils.EzPickle):
         return observation, reward, terminated, truncated, info
 
     def _get_obs(self):
-        # gymnasium: self.data 사용
+        # gymnasium: self.data
         position = self.data.qpos.flatten().copy()
         velocity = self.data.qvel.flatten().copy()
 
-        # 원본: x,y 제외
         if self._exclude_current_positions_from_observation:
             ant_state = position[7+2:]
 

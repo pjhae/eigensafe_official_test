@@ -1,10 +1,11 @@
 # EigenSafe: A Spectral Framework for Learning-Based Probabilistic Safety Assessment
 
+This repository provides the Safe Reinforcement Learning implementation of **EigenSafe**. For more details, please refer to the paper and the README below.
 
-
-- Paper: under review — arXiv:2509.17750
-- Envs: custom MuJoCo/Box2D tasks registered in `envs/register.py`. XML assets load from `envs/mujoco/assets/` by default (no hard-coded absolute paths).
-- Scripts: quick launchers in `scripts/` (CheetahLow, HopperHigh, AntBall, LunarLanderHard).
+- **Paper:** [arXiv](https://arxiv.org/abs/2509.17750)  
+- **Project Page:** [Link](https://eigensafe.github.io)  
+- **Envs:** MuJoCo/Box2D tasks registered in `envs/register.py`. 
+- **Scripts:** quick launchers in `scripts/`.
 
 ## Setup
 ```bash
@@ -14,18 +15,23 @@ pip install -e .
 ```
 
 ## Train
+
+Run the training scripts from the repository root:
+
 ```bash
-cd scripts
-./train_cheetahlow.sh          # or train_hopperhigh.sh, train_antball.sh, train_lunarlanderhard.sh
+./scripts/train_{cheetahlow,hopperhigh,antball,lunarlanderhard}.sh
 ```
 Pass extra args to override defaults, e.g. `./train_cheetahlow.sh --seed 42`.
 
 ## Evaluate
+
+Select an experiment in `results/`, choose the desired episode checkpoint, and run:
+
 ```bash
-python evaluate.py --env Halfcheetah-run-low-v5 --checkpoint results/<exp>/checkpoints/latest.pt --cuda
+python evaluate.py
 ```
 
-## Repo map (short)
+## Repo map
 - `envs/`: task definitions and assets
 - `algo/`: SAC + eigenpair safety critic
 - `train.py` / `evaluate.py`: entry points

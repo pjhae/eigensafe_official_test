@@ -261,7 +261,7 @@ class HalfCheetahEnv(MujocoEnv, utils.EzPickle):
 
         # print(z_height)
 
-        z_threshold = -0.2                   # tune this
+        z_threshold = -0.2             
         safety_signal = 1.0 if z_height <= z_threshold else 0.0
         info = {
             "safety": safety_signal,

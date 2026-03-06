@@ -674,11 +674,11 @@ class LunarLander(gym.Env, EzPickle):
 
         if abs(state[0]) >= 1.0 or (state[1] >= 1.3):
             reward = -10
-            print("!!!!!!!!!!OUT OF SCREEN!!!!!!!!!!!")
+            # print("!!!!!!!!!!OUT OF SCREEN!!!!!!!!!!!")
             
         if self._in_S_touch(state) == True:
             reward = 10
-            print("!!!!!!!!!!!!!GOAL!!!!!!!!!!!!!")
+            # print("!!!!!!!!!!!!!GOAL!!!!!!!!!!!!!")
 
         if self.render_mode == "human":
             self.render()

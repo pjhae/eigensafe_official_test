@@ -308,7 +308,6 @@ class HopperEnv(MujocoEnv, utils.EzPickle):
         
         # ===== reward: speed tracking (v = 1) =====
         v_target = 1
-        # speed_reward = - (x_velocity - v_target) ** 2
         
         if x_velocity < v_target:  
             speed_reward = x_velocity / v_target
@@ -322,7 +321,6 @@ class HopperEnv(MujocoEnv, utils.EzPickle):
         # print(z_current)
         z_threshold = 0.85
 
-        # all()로 모두 만족하는지 체크
         safety_signal = (
             1.0 if z_current >= z_threshold else 0.0
         )
