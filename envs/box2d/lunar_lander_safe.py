@@ -824,7 +824,7 @@ class LunarLander(gym.Env, EzPickle):
         # ================================
         # Safety border (GREEN / RED)
         # ================================
-        border_width = 6  # 두께 (픽셀)
+        border_width = 6 
 
         if hasattr(self, "safety_signal") and self.safety_signal == 1.0:
             border_color = (0, 255, 0)   # GREEN

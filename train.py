@@ -8,9 +8,9 @@ import itertools
 import torch
 from torch.utils.tensorboard import SummaryWriter
 
-from utils import VideoRecorder, create_directory, copy_files_and_directories
-
 from envs.register import register_custom_envs
+
+from algo.utils import VideoRecorder, create_directory, copy_files_and_directories
 from algo.sac import SAC
 from algo.buffer import ReplayMemory
 from algo.model_eigen import Psi

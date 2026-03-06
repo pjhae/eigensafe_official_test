@@ -9,7 +9,6 @@ For more details, please refer to the [paper](https://arxiv.org/abs/2509.17750) 
 ```bash
 conda env create -f environment.yml
 conda activate eigensafe
-pip install -e .
 ```
 
 ## Train
