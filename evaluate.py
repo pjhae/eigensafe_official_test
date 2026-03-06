@@ -38,8 +38,8 @@ def psi_plot_image(history, width, height):
 
 env_name = "Ant-ball-v5"    # Halfcheetah-run-low-v5, Hopper-run-high-v5, Ant-ball-v5, LunarLander-safety
 
-exp_name = "exp0125-eigen-lambda40-antball-1"
-num_episode = 16000
+exp_name = "exp0101-eigen-ant"
+num_episode = 1000
 
 # Load arguments
 args = parser_args()
