@@ -36,8 +36,11 @@ python evaluate.py
 ## Repo map
 - `envs/`: task definitions and assets
 - `algo/`: SAC + eigenpair safety critic
-- `train.py` / `evaluate.py`: entry points
 - `results/`: logs, videos, checkpoints
+- `scripts/` — training launch scripts
+- `train.py` — training implementation
+- `evaluate.py` — evaluation script
+
 
 ## Citation
 ```bibtex
