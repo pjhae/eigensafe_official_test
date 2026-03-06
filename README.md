@@ -1,6 +1,8 @@
 # EigenSafe: A Spectral Framework for Learning-Based Probabilistic Safety Assessment
 
-This repository provides the Safe Reinforcement Learning implementation of **EigenSafe**. For more details, please refer to the [paper](https://eigensafe.github.io) and the README below.
+This repository provides the official implementation of **EigenSafe** for Safe Reinforcement Learning,
+a spectral framework for learning-based probabilistic safety assessment.
+For more details, please refer to the [paper](https://eigensafe.github.io) and the README below.
 
 - **Paper:** [arXiv](https://arxiv.org/abs/2509.17750)  
 - **Project Page:** [Link](https://eigensafe.github.io)  
