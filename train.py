@@ -35,10 +35,7 @@ create_directory(ckpt_dir)
 
 paths_to_copy = [
     "algo",
-    "algo_eigen",
-    "data_gen",
     "envs",
-    "flow",
     # Add more files or directories as needed
 ]
 

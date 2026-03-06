@@ -1,5 +1,7 @@
 __credits__ = ["Kallinteris-Andreas", "Rushiv Arora"]
 
+from pathlib import Path
+
 import numpy as np
 
 from gymnasium import utils
@@ -153,7 +155,7 @@ class HalfCheetahEnv(MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
-        xml_file: str = "/home/jhpark-larr/EigenSafe/envs/mujoco/assets/half_cheetah.xml",
+        xml_file: str | None = None,
         frame_skip: int = 5,
         default_camera_config: dict[str, float | int] = DEFAULT_CAMERA_CONFIG,
         forward_reward_weight: float = 1.0,
@@ -162,6 +164,13 @@ class HalfCheetahEnv(MujocoEnv, utils.EzPickle):
         exclude_current_positions_from_observation: bool = True,
         **kwargs,
     ):
+        if xml_file is None:
+            # Use the bundled asset relative to this file so installations work anywhere.
+            xml_file = (
+                Path(__file__).resolve().parent / "assets" / "half_cheetah.xml"
+            )
+
+        xml_file = str(xml_file)
         utils.EzPickle.__init__(
             self,
             xml_file,

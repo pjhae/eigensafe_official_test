@@ -1,5 +1,7 @@
 __credits__ = ["Kallinteris-Andreas", "Rushiv Arora"]
 
+from pathlib import Path
+
 import numpy as np
 
 from gymnasium import utils
@@ -24,7 +26,7 @@ class AntGoalEnv(MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
-        xml_file="/home/jhpark-larr/eigensafe_official_test/envs/mujoco/assets/antgoal.xml",
+        xml_file: str | None = None,
         frame_skip: int = 5,
         default_camera_config: dict = DEFAULT_CAMERA_CONFIG,
         forward_reward_weight: float = 1.0,
@@ -37,6 +39,11 @@ class AntGoalEnv(MujocoEnv, utils.EzPickle):
         exclude_current_positions_from_observation: bool = True,
         **kwargs,
     ):
+        if xml_file is None:
+            # Use bundled asset relative to this file for portability.
+            xml_file = Path(__file__).resolve().parent / "assets" / "antgoal.xml"
+
+        xml_file = str(xml_file)
         utils.EzPickle.__init__(
             self,
             xml_file,

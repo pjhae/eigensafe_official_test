@@ -1,52 +1,42 @@
-# EigenSafe (unofficial)
+# EigenSafe: A Spectral Framework for Learning-Based Probabilistic Safety Assessment
 
-EigenSafe is a PyTorch implementation of a safety-aware Soft Actor-Critic (SAC) variant that augments the policy with an eigenfunction-based Lagrangian term (`Psi`). It trains on custom Gymnasium environments (HalfCheetah/Hopper/Ant variants and a continuous LunarLander-safety task) registered in `envs/`.
 
-## Repository layout
-- `train.py` — main training entrypoint using args from `algo/arguments.py`.
-- `evaluate.py` — loads saved checkpoints and renders rollouts with Psi traces.
-- `algo/` — SAC agent, replay buffer, eigen Psi model, and argument parser.
-- `envs/` — custom Gymnasium registrations (Mujoco + Box2D safety).
-- `scripts/` — ready-to-run bash launchers (`train_001.sh` … `train_004.sh`).
-- `results/` — default output root (tensorboard runs, videos, checkpoints).
+
+- Paper: under review — arXiv:2509.17750
+- Envs: custom MuJoCo/Box2D tasks registered in `envs/register.py`. XML assets load from `envs/mujoco/assets/` by default (no hard-coded absolute paths).
+- Scripts: quick launchers in `scripts/` (CheetahLow, HopperHigh, AntBall, LunarLanderHard).
 
 ## Setup
-1) Create an environment with PyTorch + Gymnasium + Mujoco/Box2D stack, e.g.:
 ```bash
-conda create -n eigensafe python=3.10 -y
+conda env create -f environment.yml
 conda activate eigensafe
-pip install torch gymnasium[mujoco] box2d-py tensorboard imageio matplotlib
+pip install -e .
 ```
-2) Ensure Mujoco drivers are available (use `MUJOCO_GL=egl` for headless; already set in scripts).
 
-## Training
-Use one of the curated launchers from `scripts/`:
+## Train
 ```bash
-cd eigensafe_official_test/scripts
-./train_001.sh          # LunarLander-safety baseline (defaults)
-./train_002.sh          # HalfCheetah-run-low-v5 safety-focused
-./train_003.sh          # Hopper-run-high-v5 with smaller batches
-./train_004.sh          # Ant-ball-v5 with higher entropy temperature
+cd scripts
+./train_cheetahlow.sh          # or train_hopperhigh.sh, train_antball.sh, train_lunarlanderhard.sh
 ```
-All launchers forward extra CLI flags to `train.py`, so you can override any argument, e.g.:
+Pass extra args to override defaults, e.g. `./train_cheetahlow.sh --seed 42`.
+
+## Evaluate
 ```bash
-./train_001.sh --seed 42 --lambda_value 900
+python evaluate.py --env Halfcheetah-run-low-v5 --checkpoint results/<exp>/checkpoints/latest.pt --cuda
 ```
 
-Artifacts per run land in `results/<exp_name>/`:
-- `runs/` TensorBoard logs,
-- `video/` episode videos,
-- `checkpoints/` SAC and Psi weights,
-- a snapshot of key source folders for reproducibility.
+## Repo map (short)
+- `envs/`: task definitions and assets
+- `algo/`: SAC + eigenpair safety critic
+- `train.py` / `evaluate.py`: entry points
+- `results/`: logs, videos, checkpoints
 
-## Evaluation
-1) Set `env_name`, `exp_name`, and `num_episode` near the top of `evaluate.py`.
-2) Run:
-```bash
-python evaluate.py --cuda    # drop the flag to force CPU
+## Citation
+```bibtex
+@article{jang2026eigensafe,
+  title={EigenSafe: A Spectral Framework for Learning-Based Probabilistic Safety Assessment},
+  author={Jang, Inkyu and Park, Jonghae and Cho, Sihyun and Mballo, Chams E and Tomlin, Claire J and Kim, H Jin},
+  journal={arXiv preprint arXiv:2509.17750},
+  year={2026}
+}
 ```
-This renders side-by-side frames with Psi curves and writes an MP4 plus per-step PNGs to `results/<exp_name>/plots/`.
-
-## Notes
-- Default hyperparameters live in `algo/arguments.py`; anything not specified on the CLI falls back to those values.
-- Environments are registered in `envs/register.py`; add new IDs there if you introduce more tasks.
