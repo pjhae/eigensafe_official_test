@@ -3,9 +3,9 @@
 This repository provides the official implementation of **EigenSafe** for Safe Reinforcement Learning,
 a spectral framework for learning-based probabilistic safety assessment.
 
-For more details, please refer to the [paper](https://arxiv.org/abs/2509.17750) and the README below.
+For more details, please refer to the [paper](https://arxiv.org/pdf/2509.17750) and the README below.
 
-- **Paper:** [arXiv](https://arxiv.org/abs/2509.17750)  
+- **Paper:** [arXiv](https://arxiv.org/pdf/2509.17750)  
 - **Project Page:** [Link](https://eigen-safe.github.io)  
 - **Envs:** MuJoCo/Box2D tasks registered in `envs/register.py`. 
 - **Scripts:** quick launchers in `scripts/`.
