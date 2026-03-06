@@ -5,7 +5,7 @@ a spectral framework for learning-based probabilistic safety assessment.
 
 For more details, please refer to the [paper](https://arxiv.org/pdf/2509.17750) and the README below.
  
-- **Project Page:** [Link](https://eigen-safe.github.io)  
+- **Project Page:** [https://eigen-safe.github.io](https://eigen-safe.github.io)  
 - **Envs:** MuJoCo/Box2D tasks registered in `envs/register.py`. 
 - **Scripts:** quick launchers in `scripts/`.
 
