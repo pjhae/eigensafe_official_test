@@ -1,7 +1,10 @@
 # EigenSafe: A Spectral Framework for Learning-Based Probabilistic Safety Assessment
 
-This repository provides the official implementation of **EigenSafe** for Safe Reinforcement Learning,
-a spectral framework for learning-based probabilistic safety assessment.
+**Authors:** [Inkyu Jang*](https://janginkyu.github.io/), [Jonghae Park*](https://jonghaepark.github.io/), Sihyun Cho, Chams E. Mballo, Claire J. Tomlin, H. Jin Kim  
+<sub><b>* Equal contribution</b></sub>
+
+
+This repository provides the official implementation of **EigenSafe** for Safe Reinforcement Learning.
 
 For more details, please refer to the [paper](https://arxiv.org/abs/2509.17750) and the [project page](https://eigen-safe.github.io).
  
@@ -18,7 +21,7 @@ Run the training scripts from the repository root:
 ```bash
 ./scripts/train_{cheetahlow,hopperhigh,antball,lunarlanderhard}.sh
 ```
-Pass extra args to override defaults, e.g. `./train_cheetahlow.sh --seed 42`.
+Pass extra args to override defaults, e.g. `./train_cheetahlow.sh --seed 717`.
 
 ## Evaluate
 
@@ -30,11 +33,11 @@ python evaluate.py
 
 ## Repo map
 - `envs/`: task definitions and assets
-- `algo/`: SAC + eigenpair safety critic
+- `algo/`: SAC + EigenSafe safety critic 
 - `results/`: logs, videos, checkpoints
-- `scripts/` — training launch scripts
-- `train.py` — training implementation
-- `evaluate.py` — evaluation script
+- `scripts/`: training launch scripts
+- `train.py`: training implementation
+- `evaluate.py`: evaluation script
 
 
 ## Citation
