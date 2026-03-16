@@ -39,7 +39,7 @@ def psi_plot_image(history, width, height):
 env_name = "Ant-ball-v5"    # Halfcheetah-run-low-v5, Hopper-run-high-v5, Ant-ball-v5, LunarLander-safety
 
 exp_name = "exp0101-eigen-ant"
-num_episode = 10
+num_episode = 80000
 
 # Load arguments
 args = parser_args()
@@ -80,7 +80,7 @@ agent.load_checkpoint(f"results/{exp_name}/checkpoints/sac_checkpoint_{env_name}
 psi = Psi(env.observation_space.shape[0] + env.action_space.shape[0], args).to(device)
 psi.load_checkpoint(f"results/{exp_name}/checkpoints/psi_checkpoint_{env_name}_{num_episode}")
 # Check action dim
-print("env_name :", args.env_name)
+print("env_name :", env_name)
 print("max_episode_step :", env._max_episode_steps)
 print("state_dim :", env.observation_space.shape[0])
 
@@ -155,4 +155,3 @@ avg_first_unsafe_step = sum(first_unsafe_steps) / len(first_unsafe_steps)
 
 env.close()
 video_writer.close()
-
